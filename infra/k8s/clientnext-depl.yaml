@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: clientnext-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: clientnext
+  template:
+    metadata:
+      labels:
+        app: clientnext
+    spec:
+      containers:
+        - name: clientnext
+          image: rigoniroger/clientnext
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: clientnext-srv
+spec:
+  selector:
+    app: clientnext
+  ports:
+    - name: clientnext
+      protocol: TCP
+      port: 3000
+      targetPort: 3000
