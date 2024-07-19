@@ -1,5 +1,5 @@
+import { currentUser } from '@rigonitickets/common';
 import express from 'express';
-import { currentUser } from '../middlwares/current-user';
 
 const router = express.Router();
 

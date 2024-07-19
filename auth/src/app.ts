@@ -7,8 +7,7 @@ import { currentUserRouter } from './routes/current-user';
 import { signinRouter } from './routes/signin';
 import { signoutRouter } from './routes/signout';
 import { signupRouter } from './routes/signup';
-import { errorHandler } from './middlwares/error-handlers';
-import { NotFoundError } from './errors/not-found-error';
+import { errorHandler, NotFoundError } from '@rigonitickets/common';
 
 const app = express();
 app.set('trust proxy', true);
