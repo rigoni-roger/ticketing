@@ -6,6 +6,10 @@ declare global {
   var signin: () => string[];
 }
 
+declare global {
+  var createId: () => string;
+}
+
 let mongo: any;
 
 jest.setTimeout(120000); // Increase the timeout to 2 minutes
@@ -34,7 +38,7 @@ afterAll(async () => {
 global.signin = () => {
   const payload = {
     email: 'test@test.com',
-    id: '1lk24h5h65j4',
+    id: global.createId(),
   };
 
   const token = jwt.sign(payload, process.env.JWT_KEY!);
@@ -46,4 +50,8 @@ global.signin = () => {
   const base64 = Buffer.from(sessionJSON).toString('base64');
 
   return [`session=${base64}`];
+};
+
+global.createId = () => {
+  return new mongoose.Types.ObjectId().toHexString();
 };
