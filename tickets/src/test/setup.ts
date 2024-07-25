@@ -10,6 +10,8 @@ declare global {
   var createId: () => string;
 }
 
+jest.mock('../nats-wrapper');
+
 let mongo: any;
 
 jest.setTimeout(120000); // Increase the timeout to 2 minutes
@@ -23,6 +25,7 @@ beforeAll(async () => {
 });
 
 beforeEach(async () => {
+  jest.clearAllMocks();
   const collections = await mongoose.connection.db.collections();
 
   for (let collection of collections) {
